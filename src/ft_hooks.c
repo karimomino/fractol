@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_hooks.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 21:18:25 by kamin             #+#    #+#             */
-/*   Updated: 2021/12/08 03:45:13 by kamin            ###   ########.fr       */
+/*   Updated: 2021/12/08 04:31:17 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,21 @@ int	ft_mouse(void)
 	return (0);
 }
 
+int	mouse_wheel(int keycode)
+{
+	ft_zoom(keycode);
+	return (0);
+}
+
 void	ft_zoom(int key)
 {
-	if (key == 13)
+	if (key == 13 || key == 5)
 	{
 		t_pm.zoom += 0.07;
 		t_pm.movex = (t_mp.x - t_map.w / 2) * 0.003 / t_pm.zoom - 0.5;
 		t_pm.movey = (t_mp.y - t_map.h / 2) * 0.003 / t_pm.zoom - 0.5;
 	}
-	else
+	else if ((key == 1 || key == 4) && t_pm.zoom >= 0)
 	{
 		t_pm.zoom -= 0.07;
 		t_pm.movex = (t_mp.x - t_map.w / 2) * 0.003 / t_pm.zoom - 0.5;
@@ -57,6 +63,7 @@ void	mlx_loops(void)
 {
 	mlx_put_image_to_window(t_map.mlx, t_map.win, t_img.img, 0, 0);
 	mlx_hook(t_map.win, 2, 0, key_hook, (void *)0);
+	mlx_hook(t_map.win, 4, 3, mouse_wheel, (void *)0);
 	mlx_loop_hook(t_map.mlx, ft_mouse, t_map.win);
 	mlx_do_key_autorepeaton(t_map.mlx);
 	mlx_loop(t_map.mlx);

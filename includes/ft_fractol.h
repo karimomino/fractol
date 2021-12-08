@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_fractol.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kamin <kamin@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kamin <kamin@42abudhabi.ae>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/12 15:19:09 by kamin             #+#    #+#             */
-/*   Updated: 2021/12/08 03:46:05 by kamin            ###   ########.fr       */
+/*   Updated: 2021/12/08 04:30:38 by kamin            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,6 @@ void	init_screen(void);
 void	mlx_loops(void);
 void	julia_error(int *error);
 void	ft_mandelbar_escape(int x, int y, int i_max);
+int		mouse_wheel(int keycode);
 
 #endif
